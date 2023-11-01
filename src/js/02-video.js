@@ -10,10 +10,15 @@ player.on('timeupdate', ({ seconds }) => {
 });
 
 const updateLocalStorageThrottled = throttle(seconds => {
-  localStorage.setItem('videoplayer-current-time', seconds);
+  localStorage.setItem('videoplayer-current-time', JSON.stringify(seconds));
 }, 1000);
 
 const savedTime = localStorage.getItem('videoplayer-current-time');
+
 if (savedTime) {
-  player.setCurrentTime(parseFloat(savedTime));
+  try {
+    player.setCurrentTime(JSON.parse(savedTime));
+  } catch (error) {
+    console.error('Виникла помилка:', error);
+  }
 }
