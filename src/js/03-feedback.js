@@ -22,8 +22,6 @@ function getFormValues() {
       const inputValues = JSON.parse(getInputValues);
       inputEmailEl.value = inputValues.email;
       inputMessageEl.value = inputValues.message;
-
-      console.log(getInputValues);
     }
   } catch (error) {
     console.error('Помилка при отриманні даних зі сховища:', error);
